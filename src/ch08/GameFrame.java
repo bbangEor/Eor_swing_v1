@@ -142,7 +142,7 @@ public class GameFrame extends JFrame {
 				} else if (code == KeyEvent.VK_RIGHT) {
 					playerX += 10;
 				} else if (code == KeyEvent.VK_SPACE) {
-					pause();
+					
 					// 1. 스페이스바 눌렀을때 적군을 멈출 수 있도록 코드 수정
 				}
 
@@ -153,12 +153,12 @@ public class GameFrame extends JFrame {
 		});
 	}
 
-	public static  void pause() {
-		 try {
-		      System.in.read();
-		    } catch (IOException e) { }
-		  
-		
+	public static void pause() {
+		try {
+			System.in.read();
+		} catch (IOException e) {
+		}
+
 	}
 
 }
