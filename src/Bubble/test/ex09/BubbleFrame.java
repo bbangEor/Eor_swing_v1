@@ -1,4 +1,4 @@
-package Bubble;
+package Bubble.test.ex09;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -6,9 +6,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import Bubble.components.Enemy;
-import Bubble.components.Player;
 
 public class BubbleFrame extends JFrame {
 	
@@ -18,16 +15,14 @@ public class BubbleFrame extends JFrame {
 	private JLabel backgroundMap;
 	// 포함관계 - 컴포지션관계
 	private Player player;
-	
-	//자료구조 --> 배열
-	private Enemy enemy1;
-	
+
 	public BubbleFrame() {
 		initData();
 		setInitLayout();
 		addEvenListener();
 
-		
+		// Player 백그라운드 서비스 시작
+		new Thread(new BackgroundPlayerService(player)).start();
 	}
 
 	private void initData() {
@@ -40,8 +35,6 @@ public class BubbleFrame extends JFrame {
 
 		//mContext --> 참조타입()-> 주소값 , 주소값의 크기는 기본 4 byte 이다 .
 		player = new Player(mContext);
-		
-		enemy1 = new Enemy(mContext);
 	}
 
 	private void setInitLayout() {
@@ -52,7 +45,6 @@ public class BubbleFrame extends JFrame {
 		setVisible(true);
 
 		add(player); // 좌표, 크기 필요
-		add(enemy1);
 	}
 
 	private void addEvenListener() {
@@ -126,9 +118,6 @@ public class BubbleFrame extends JFrame {
 		return player;
 		}
 
-	public Enemy getEnemy() {
-		return enemy1;
-	}
 	// 코드 테스트
 	public static void main(String[] args) {
 		// !!(중요)!! 메인함수를 가지고 있는 클래스는 하위에 생성도니 모든 객체들의 주소값을 알고있다 !!(중요)!!
